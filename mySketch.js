@@ -3,7 +3,7 @@ let inputArea = undefined;
 let input; // for file dialog
 let fontColor = 20;
 let isReqSaveImage = false;
-let hedgehogPict = undefined;
+let crossPict = undefined;
 
 // For datGUI
 const gOptions = {
@@ -28,8 +28,8 @@ function createCols(url) {
 }
 
 function preload() {
-  // preload hedgehog icon
-  hedgehogPict = loadImage('./images/hedgehog_3d.png');
+  // preload cross icon
+  crossPict = loadImage('./images/cross.png');
 }
 
 function setup() {
@@ -107,7 +107,7 @@ function draw() {
   if (ztmyFont === undefined) {
     drawInitialScreen();
   } else {
-    drawZTMYTextScreen();
+    drawHunterTextScreen();
   }
 
   // Trigger on save image
@@ -129,20 +129,20 @@ const drawInitialScreen = () => {
     // Title
     fill(20);
     textSize(height / 25);
-    text("'ZTMY Font' Tester", width / 2, height / 10);
-    image(hedgehogPict, width / 2 - (height / 25) * 6.1, height / 14.3, height / 20, height / 20);
+    text("'Hunter Font' Tester", width / 2, height / 10);
+    image(crossPict, width / 2 - (height / 25) * 6.7, height / 13.5, height / 20, height / 20);
     image(
-      hedgehogPict,
-      width / 2 + (height / 25) * 6.1 - height / 20,
-      height / 14.3,
+      crossPict,
+      width / 2 + (height / 25) * 6.7 - height / 20,
+      height / 13.5,
       height / 20,
       height / 20
     );
 
     // Descriptions
     textSize(height / 30);
-    text('1. Click/Tap HERE \n to download ZTMY font.', width / 2, (height / 4) * 1.2);
-    text('2. Click/Tap HERE \n to set downloaded ZTMY font.', width / 2, ((3 * height) / 4) * 0.95);
+    text('1. Click/Tap HERE \n to download Hunter font. \n (password automatically copied)', width / 2, (height / 4) * 1.2);
+    text('2. Click/Tap HERE \n to set downloaded Hunter font.', width / 2, ((3 * height) / 4) * 0.95);
 
     // Center line
     stroke(20);
@@ -152,7 +152,16 @@ const drawInitialScreen = () => {
   pop();
 };
 
-const drawZTMYTextScreen = () => {
+// クリップボードへコピー（コピーの処理）
+function copyToClipboard (tagValue) {
+  if (navigator.clipboard) { // navigator.clipboardが使えるか判定する
+    return navigator.clipboard.writeText(tagValue).then(function () { // クリップボードへ書きむ
+      messageActive() //メッセージを表示する
+    })
+  }
+}
+
+const drawHunterTextScreen = () => {
   // read datGUI
   const opt = gOptions;
   if (options) {
@@ -172,15 +181,16 @@ const drawZTMYTextScreen = () => {
     textAlign(LEFT);
   }
 
-  // draw text with ZTMY font
+  // draw text with Hunter font
   text(inputArea.value(), width / 2 + leftMargin, height / 2, width, height);
 };
 
 const _mouseClicked = () => {
   if (!ztmyFont) {
     if (mouseY < height / 2) {
-      const url = 'https://zutomayo.net/font/';
+      const url = 'https://half-a.net/sozai-page4';
       window.open(url, '_blank');
+      copyToClipboard('hunterx2')
     } else {
       // Open file dialog
       input.elt.click();
