@@ -17,7 +17,7 @@ const utilities = {
     isReqSaveImage = true;
   },
   GitHub: () => {
-    window.open('https://github.com/tetunori/ztmy-font-tester', '_blank');
+    window.open('https://github.com/tetunori/hunter-font-tester', '_blank');
   },
 };
 
@@ -36,10 +36,10 @@ const prepareDatGUI = (opt) => {
   gui
     .add(options, 'fontSize', 5, 100, 1)
     .name('フォントサイズ');
-  gui.add(utilities, 'RandomizeColor').name('ランダムZTMY色 🎨');
+  gui.add(utilities, 'RandomizeColor').name('ランダムHUNTERx2色 🎨');
 
   gui.add(options, 'isCenterAlign', true).name('中央寄せ');
-  gui.add(utilities, 'Reset').name('設定リセット 🐱');
+  gui.add(utilities, 'Reset').name('設定リセット ❌');
 
   gui.add(utilities, 'Download').name('画像ダウンロード');
   gui.add(utilities, 'GitHub').name('GitHub 🔗');

@@ -15,7 +15,7 @@ const gOptions = {
 
 // Color picking
 const colsStr =
-  '/007bff-6610f2-6f42c1-e83e8c-dc3545-fd7e14-ffc107-28a745-20c997-17a2b8-6c757d-343a40-000000-f8f9fa';
+  '/b8244b-000000-ffffff-fdab4d-006f44-ad945d';
 let colors = createCols(colsStr);
 
 // Take some Colors from coolors URL
@@ -50,7 +50,7 @@ function setup() {
   inputArea = createElement('textarea');
   inputArea.position(width * 0.1, height * 0.8);
   inputArea.size(width * 0.8, height * 0.1);
-  inputArea.value('ずっと\nまよなかでいいのに');
+  inputArea.value('おそろしくはやいしゅとう\nおれでなきゃ\nみのがしちゃうね');
   inputArea.style('font-size', height / 50 + 'px');
   inputArea.hide();
 
@@ -92,10 +92,8 @@ const randomizeColor = () => {
 const setFontColor = () => {
   fontColor = 20;
   switch (colors[0]) {
-    case '#6610f2':
-    case '#6f42c1':
-    case '#6c757d':
-    case '#343a40':
+    case '#b8244b':
+    case '#006f44':
     case '#000000':
       fontColor = 235;
       break;
@@ -141,8 +139,16 @@ const drawInitialScreen = () => {
 
     // Descriptions
     textSize(height / 30);
-    text('1. Click/Tap HERE \n to download Hunter font. \n (password automatically copied)', width / 2, (height / 4) * 1.2);
-    text('2. Click/Tap HERE \n to set downloaded Hunter font.', width / 2, ((3 * height) / 4) * 0.95);
+    text(
+      '1. Click/Tap HERE \n to download Hunter font. \n (password automatically copied)',
+      width / 2,
+      (height / 4) * 1.2
+    );
+    text(
+      '2. Click/Tap HERE \n to set downloaded Hunter font.',
+      width / 2,
+      ((3 * height) / 4) * 0.95
+    );
 
     // Center line
     stroke(20);
@@ -152,12 +158,9 @@ const drawInitialScreen = () => {
   pop();
 };
 
-// クリップボードへコピー（コピーの処理）
-function copyToClipboard (tagValue) {
-  if (navigator.clipboard) { // navigator.clipboardが使えるか判定する
-    return navigator.clipboard.writeText(tagValue).then(function () { // クリップボードへ書きむ
-      messageActive() //メッセージを表示する
-    })
+function copyToClipboard(tagValue) {
+  if (navigator.clipboard) {
+    return navigator.clipboard.writeText(tagValue);
   }
 }
 
@@ -190,13 +193,13 @@ const _mouseClicked = () => {
     if (mouseY < height / 2) {
       const url = 'https://half-a.net/sozai-page4';
       window.open(url, '_blank');
-      copyToClipboard('hunterx2')
+      copyToClipboard('hunterx2');
     } else {
       // Open file dialog
       input.elt.click();
     }
   }
-}
+};
 
 // Draw fine print at the bottom of page
 // This is not printed in a download image.
